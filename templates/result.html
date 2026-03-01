@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+</head>
+<body>
+
+<h2>Attendance Marked</h2>
+
+<img src="/{{ processed_image }}" width="500">
+
+<ul>
+    {% for name in attendance %}
+    <li>{{ name }}</li>
+    {% endfor %}
+</ul>
+
+<a href="/">Go Back</a>
+
+</body>
+</html>

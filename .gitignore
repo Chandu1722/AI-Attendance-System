@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+attendance.db
+temp.jpg
+static/uploads/
+static/processed/
+.deepface/
+yolov8n-face.pt
+dataset/

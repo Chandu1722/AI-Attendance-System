@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Attendance</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>AI Classroom Attendance</h1>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Upload</button>
+    </form>
+<a href="/total_attendance">
+    <button>Total Attendance</button>
+</a>
+</div>
+
+</body>
+</html>
