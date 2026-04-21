@@ -1,30 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Total Attendance</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Attendance - Smart Attend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <div class="app-wrapper">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fa-solid fa-users-viewfinder"></i>
+                <span>Smart Attend</span>
+            </div>
+            <a href="/" class="btn btn-nav"><i class="fa-solid fa-house"></i> Home</a>
+        </header>
 
-<h2>Total Attendance Per Student</h2>
+        <main class="container">
+            <div class="card glass-effect">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-chart-simple"></i> Attendance Dashboard</h2>
+                    <p>Total attendance records for all students.</p>
+                </div>
 
-<table border="1" cellpadding="10">
-
-    <tr>
-        <th>Name</th>
-        <th>Total Sessions Attended</th>
-    </tr>
-
-    {% for row in records %}
-    <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-    </tr>
-    {% endfor %}
-
-</table>
-
-<br>
-<a href="/">Back</a>
-
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th class="text-center">Total Sessions Attended</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if records %}
+                                {% for row in records %}
+                                <tr>
+                                    <td>
+                                        <div class="student-info">
+                                            <div class="avatar small"><i class="fa-solid fa-user"></i></div>
+                                            <span class="student-name">{{ row[0] }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center"><strong>{{ row[1] }}</strong></td>
+                                    <td>
+                                        {% if row[1] > 0 %}
+                                            <span class="status-badge active">Active</span>
+                                        {% else %}
+                                            <span class="status-badge inactive">Inactive</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="3" class="text-center empty-row">No attendance records found.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
 </html>

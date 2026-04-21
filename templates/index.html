@@ -1,22 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AI Attendance</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Attendance System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <div class="app-wrapper">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fa-solid fa-users-viewfinder"></i>
+                <span>Smart Attend</span>
+            </div>
+        </header>
 
-<div class="container">
-    <h1>AI Classroom Attendance</h1>
+        <main class="container">
+            <div class="card glass-effect">
+                <div class="card-header">
+                    <h1>AI Classroom Attendance</h1>
+                    <p>Upload a class photo to automatically mark attendance.</p>
+                </div>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" required>
-        <button type="submit">Upload</button>
-    </form>
-<a href="/total_attendance">
-    <button>Total Attendance</button>
-</a>
-</div>
+                <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+                    <div class="file-drop-area">
+                        <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+                        <span class="file-msg">Drag & drop or click to upload</span>
+                        <input class="file-input" type="file" name="image" accept="image/*" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Process Attendance
+                    </button>
+                </form>
 
+                <div class="actions">
+                    <a href="/total_attendance" class="btn btn-secondary">
+                        <i class="fa-solid fa-chart-pie"></i> View Total Attendance
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Simple script to update file name on selection
+        const fileInput = document.querySelector('.file-input');
+        const fileMsg = document.querySelector('.file-msg');
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                fileMsg.textContent = e.target.files[0].name;
+                fileMsg.classList.add('has-file');
+            } else {
+                fileMsg.textContent = 'Drag & drop or click to upload';
+                fileMsg.classList.remove('has-file');
+            }
+        });
+    </script>
 </body>
 </html>

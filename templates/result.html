@@ -1,21 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Result - Smart Attend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <div class="app-wrapper">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fa-solid fa-users-viewfinder"></i>
+                <span>Smart Attend</span>
+            </div>
+            <a href="/" class="btn btn-nav"><i class="fa-solid fa-house"></i> Home</a>
+        </header>
 
-<h2>Attendance Marked</h2>
+        <main class="container result-container">
+            <div class="card glass-effect result-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-circle-check text-success"></i> Attendance Marked</h2>
+                    <p>Successfully processed the image and recorded attendance.</p>
+                </div>
 
-<img src="/{{ processed_image }}" width="500">
+                <div class="result-content">
+                    <div class="image-preview">
+                        <img src="/{{ processed_image }}" alt="Processed Image">
+                    </div>
 
-<ul>
-    {% for name in attendance %}
-    <li>{{ name }}</li>
-    {% endfor %}
-</ul>
+                    <div class="attendance-list-container">
+                        <h3>Recognized Students <span class="badge">{{ attendance|length }}</span></h3>
+                        {% if attendance %}
+                        <ul class="attendance-list">
+                            {% for name in attendance %}
+                            <li>
+                                <div class="student-info">
+                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                                    <span class="student-name">{{ name }}</span>
+                                </div>
+                                <span class="status-badge present">Present</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <div class="empty-state">
+                            <i class="fa-regular fa-face-frown"></i>
+                            <p>No faces recognized in the image.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
 
-<a href="/">Go Back</a>
-
+                <div class="actions">
+                    <a href="/total_attendance" class="btn btn-secondary">
+                        <i class="fa-solid fa-chart-pie"></i> View Total Attendance
+                    </a>
+                    <a href="/" class="btn btn-outline">
+                        <i class="fa-solid fa-arrow-left"></i> Process Another
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
